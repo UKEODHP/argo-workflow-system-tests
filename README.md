@@ -3,7 +3,8 @@ System test repo for system tests defined using  argo workflows.
 
 
 # Prerequisities
-1.) Install Argo Workflow\n
+1.) Install Argo Workflow
+
 2.) Install Argo CLI
 
 
