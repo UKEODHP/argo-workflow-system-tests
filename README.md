@@ -41,6 +41,7 @@ Test installation
 
 
 # Executing a argo workflow using argo cli
+
 Execute workflow defined in a yaml file
 
 `argo submit -n argo --watch <yaml file> --serviceaccount argo`
@@ -51,8 +52,11 @@ Execute workflow defined in a yaml file
 `kubectl -n argo port-forward deployment/argo-server 2746:2746`
 
 Navigate your browser to Workflow UI using 
+
 `https://localhost::2746/`
 
 Due to the self-signed certificate, you will receive a TLS error which you will need to manually approve.
+
 Click `+ Submit New Workflow` and then `Edit using full workflow options`
+
 You can find an example workflow already in the text field. Press `+ Create` to start the workflow.
