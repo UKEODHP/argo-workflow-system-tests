@@ -3,15 +3,14 @@ System test repo for system tests defined using  argo workflows.
 
 
 # Prerequisities
-1.) Install Argo Workflow
-
+1.) Install Argo Workflow/n
 2.) Install Argo CLI
 
 
 ## Install argo workflow
 Create argo namespace
 
-`kubectl create namespace arg`
+`kubectl create namespace argo`
 
 Install the latest version of argo workflow
 
