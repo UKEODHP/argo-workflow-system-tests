@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow                  
+metadata:
+  generateName: homepage-test-  
+spec:
+  entrypoint: homepage-up-and-running 
+  templates:
+    - name: homepage-up-and-running
+      script:
+        image: broadinstitute/python-requests:2.7
+        command: [python]
+        source: |
+          import requests
+
+          try:
+            r = requests.get("https://dev.eodatahub.org.uk/")
+
+            if (r.status_code == 200):
+              criteria = "Success"
+            else:
+              criteria = "Failed - Http response is "
+
+            print("{} {}".format(criteria, r.status_code))
+
+          except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+            
+        resources: # limit the resources
+          limits:
+            memory: 32Mi
+            cpu: 100m
