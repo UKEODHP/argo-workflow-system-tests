@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: url-up-and-running-workflow-
+spec:
+  entrypoint: url-up-and-running
+  arguments:
+    parameters:
+      - name: url
+  workflowTemplateRef:
+    name: url-test-workflowtemplate
