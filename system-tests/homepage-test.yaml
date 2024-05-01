@@ -6,14 +6,17 @@ spec:
   entrypoint: homepage-up-and-running 
   templates:
     - name: homepage-up-and-running
+      inputs:
+        parameters:
+        - name: url       # parameter declaration for => argo submit -n argo --watch -p url="https://dev.eodatahub.org.uk/" homepage-test.yaml --serviceaccount=argo
       script:
-        image: broadinstitute/python-requests:2.7
+        image: nyurik/alpine-python3-requests
         command: [python]
         source: |
           import requests
 
           try:
-            r = requests.get("https://dev.eodatahub.org.uk/")
+            r = requests.get("{{inputs.parameters.url}}")
 
             if (r.status_code == 200):
               criteria = "Success"

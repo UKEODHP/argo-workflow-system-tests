@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: url-test-workflowtemplate # argo template create url-test-workflowtemplate.yaml
+spec:
+  entrypoint: url-up-and-running 
+  templates:
+    - name: url-up-and-running
+      inputs:
+        parameters:
+        - name: url       # parameter declaration for => argo submit -n argo --watch -p url="https://dev.eodatahub.org.uk/" homepage-test.yaml --serviceaccount=argo
+      script:
+        image: nyurik/alpine-python3-requests
+        command: [python]
+        source: |
+          import requests
+
+          try:
+            r = requests.get("{{inputs.parameters.url}}")
+
+            if (r.status_code == 200):
+              criteria = "Success"
+            else:
+              criteria = "Failed - Http response is "
+
+            print("{} {}".format(criteria, r.status_code))
+
+          except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+
+    - name: url-read-from-file
+      inputs:
+        parameters:
+        - name: urlpath       # parameter declaration for => argo submit -n argo --watch -p url="https://dev.eodatahub.org.uk/" homepage-test.yaml --serviceaccount=argo
+      script:
+        image: nyurik/alpine-python3-requests
+        command: [python]
+        source: |
+          import requests
+
+          try:
+            r = requests.get("{{inputs.parameters.url}}")
+
+            if (r.status_code == 200):
+              criteria = "Success"
+            else:
+              criteria = "Failed - Http response is "
+
+            print("{} {}".format(criteria, r.status_code))
+
+          except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+            
+        resources: # limit the resources
+          limits:
+            memory: 32Mi
+            cpu: 100m
