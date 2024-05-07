@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: url-test-workflowtemplate # argo template create url-test-workflowtemplate.yaml
+spec:
+  entrypoint: url-up-and-running 
+  serviceAccountName: argo
+  templates:
+    - name: url-up-and-running
+      steps:
+      - - name: loop-url-names
+          template: loop-url-names
+          arguments:
+            parameters:
+            - name: url
+              value: "{{item.url}}"
+          withItems:
+            - { url: 'https://dev.eodatahub.org.uk'}
+            - { url: 'https://dev.eodatahub.org.uk/vs'}
+            - { url: 'https://dev.eodatahub.org.uk/apphub'}
+            - { url: 'https://dev.eodatahub.org.uk/ades'}
+            - { url: 'https://dev.eodatahub.org.uk/keycloak'}
+
+    - name: loop-url-names
+      inputs:
+        parameters:
+        - name: url
+      script:
+        image: nyurik/alpine-python3-requests
+        command: [python]
+        source: |
+          import requests
+
+          try:
+            r = requests.get("{{inputs.parameters.url}}")
+
+            if (r.status_code == 200):
+              criteria = "Success"
+            else:
+              criteria = "Failed - Http response is "
+
+            print("{} {}".format(criteria, r.status_code))
+
+          except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+            
+        resources: # limit the resources
+          limits:
+            memory: 32Mi
+            cpu: 100m
