@@ -4,6 +4,7 @@ metadata:
   generateName: homepage-test-  
 spec:
   entrypoint: homepage-up-and-running 
+  serviceAccountName: argo
   templates:
     - name: homepage-up-and-running
       inputs:
