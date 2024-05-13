@@ -136,4 +136,4 @@ then delete the one selected
 ## creating configmap with json file content
 `kubectl create configmap urlnames-configmap --from-file=urlnames.json -n argo`
 
-the `urlnames-configmap` can then be used as vlume in argo workflow
+the `urlnames-configmap` can then be used as volume in argo workflow
