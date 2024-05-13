@@ -31,7 +31,7 @@ spec:
                 filecontents = file.read()
                 data = json.loads(filecontents)
                 for item in data: # v in data.values():
-                  # print("the url name read from json file is {}, now cheeecking if url is up and running".format(item["url"]))
+                  # print("the url name read from json file is {}, now checking if url is up and running".format(item["url"]))
                   r = requests.get(item['url'])
 
                   if (r.status_code == 200):
