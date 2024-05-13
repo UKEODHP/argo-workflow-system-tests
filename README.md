@@ -65,7 +65,7 @@ e.g.
 
 where, the urlfile.yaml content is
 `url: https://dev.eodatahub.org.uk`
-and `homepage-test.yaml` file is under `/samples` folder
+and `homepage-test.yaml` file is under `/samples` folder.
 
 # Executing argo workflow using UI
 
