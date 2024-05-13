@@ -1,0 +1,63 @@
+apiVersion: argoproj.io/v1alpha1  # https://stackoverflow.com/questions/49478036/populate-configmap-by-importing-data-from-file-in-k8s
+kind: CronWorkflow
+metadata:
+  generateName: system-test-url-check-
+spec:
+  schedule: "0 9-17 * * *"
+  concurrencyPolicy: "Allow"
+  startingDeadlineSeconds: 300
+  timezone: "UTC"
+  workflowSpec:
+    entrypoint: system-test-url-check
+    templates:
+      - name: system-test-url-check
+        outputs:
+          artifacts:
+            - name: output-file
+              path: /mnt/output
+        script:
+          image: nyurik/alpine-python3-requests
+          command: [python]
+          source: |
+            import requests
+            import json
+            
+            countSuccess = 0
+            countFail = 0
+
+            try:
+
+              with open('/mnt/input/keys') as file:
+                filecontents = file.read()
+                data = json.loads(filecontents)
+                for item in data: # v in data.values():
+                  # print("the url name read from json file is {}, now cheeecking if url is up and running".format(item["url"]))
+                  r = requests.get(item['url'])
+
+                  if (r.status_code == 200):
+                    criteria = "Success"
+                    countSuccess += 1
+                  else:
+                    criteria = "Failed - Http response is "
+                    countFail += 1
+
+                  print("{} {} for url: {}".format(criteria, r.status_code, item["url"]))
+
+            except requests.exceptions.RequestException as e:
+              raise SystemExit(e)
+              countFail += 1
+
+            finally:
+              print("---- TEST RESULT ---- {} success, {} fail".format(countSuccess, countFail))
+
+          volumeMounts:
+            - name: input-volume
+              mountPath: /mnt/input
+        volumes:
+          - name: input-volume
+            configMap:
+              name: urlnames-configmap
+              items:
+              - key: urlnames.json
+                path: keys
+
