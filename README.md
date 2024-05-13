@@ -61,12 +61,11 @@ e.g.
 `argo submit -n argo --watch <yaml file> --parameter-file <parameterfilename> --serviceaccount argo`
 
 e.g.
-`argo submit -n argo --watch <yaml file> --parameter-file urlfile.yaml --serviceaccount argo`
+`argo submit -n argo --watch homepage-test.yaml --parameter-file urlfile.yaml --serviceaccount argo`
 
-where, the urlfile.yaml is
+where, the urlfile.yaml content is
 `url: https://dev.eodatahub.org.uk`
-
-
+and `homepage-test.yaml` file is under `/samples` folder
 
 # Executing argo workflow using UI
 
