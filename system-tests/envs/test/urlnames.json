@@ -1,0 +1,10 @@
+[
+  {"url": "https://test.eodatahub.org.uk"},
+  {"url": "https://test.eodatahub.org.uk/vs"},
+  {"url": "https://test.eodatahub.org.uk/apphub"},
+  {"url": "https://test.eodatahub.org.uk/ades"},
+  {"url": "https://test.eodatahub.org.uk/keycloak"},
+  {"url": "https://test.eodatahub.org.uk/index/"},
+  {"url": "https://test.eodatahub.org.uk/stac-fastapi"}
+  {"url": "https://test.eodatahub.org.uk/catalogue-data/catalog.json2"}
+]
