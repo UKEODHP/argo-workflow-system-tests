@@ -41,11 +41,11 @@ spec:
                     criteria = "Failed - Http response is "
                     countFail += 1
 
-                  print("{} {} for url: {}".format(criteria, r.status_code, item["url"]))
+                  print(criteria, " ", r.status_code, " for url: ", item["url"])
 
             except requests.exceptions.RequestException as e:
-              raise SystemExit(e)
               countFail += 1
+              raise SystemExit(e)
 
             finally:
               print("---- TEST RESULT ---- {} success, {} fail".format(countSuccess, countFail))
