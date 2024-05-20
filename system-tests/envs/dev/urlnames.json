@@ -7,5 +7,8 @@
   {"url": "https://pulsar.eodatahub.org.uk"},
   {"url": "https://dev.eodatahub.org.uk/index/"},
   {"url": "https://dev.eodatahub.org.uk/stac-fastapi"},
-  {"url": "https://dev.eodatahub.org.uk/catalogue-data/catalog.json2"}
+  {"url": "https://dev.eodatahub.org.uk/catalogue-data/catalog.json2"},
+  {"url": "https://dev.eodatahub.org.uk/vs/cache/ows/wmts/?service=WMTS&request=getCapabilities"},
+  {"url": "https://dev.eodatahub.org.uk/vs/cache/ows/wms?service=wms&request=getCapabilities&version=1.0.0"},
+  {"url": "https://dev.eodatahub.org.uk/vs/ows?service=WCS&version=2.0.1&request=GetCapabilities"}
 ]
