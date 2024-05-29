@@ -1,7 +1,7 @@
-apiVersion: argoproj.io/v1alpha1  # https://stackoverflow.com/questions/49478036/populate-configmap-by-importing-data-from-file-in-k8s
+apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  generateName: system-test-url-check-
+  generateName: system-test-url-check
 spec:
   schedule: "0 9-17 * * *"
   concurrencyPolicy: "Allow"
