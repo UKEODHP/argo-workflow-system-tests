@@ -9,7 +9,7 @@ spec:
   timezone: "UTC"
   workflowSpec:
     entrypoint: url-up-and-running 
-    serviceAccountName: argo
+    serviceAccountName: argo-workflows
     templates:
       - name: url-up-and-running
         steps:
