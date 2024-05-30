@@ -1,0 +1,13 @@
+[
+  {"url": "https://test.eodatahub.org.uk"},
+  {"url": "https://test.eodatahub.org.uk/vs"},
+  {"url": "https://test.eodatahub.org.uk/apphub"},
+  {"url": "https://test.eodatahub.org.uk/ades"},
+  {"url": "https://test.eodatahub.org.uk/keycloak"},
+  {"url": "https://test.eodatahub.org.uk/index/"},
+  {"url": "https://test.eodatahub.org.uk/stac-fastapi"}
+  {"url": "https://test.eodatahub.org.uk/catalogue-data/catalog.json2"},
+  {"url": "https://test.eodatahub.org.uk/vs/cache/ows/wmts/?service=WMTS&request=getCapabilities"},
+  {"url": "https://test.eodatahub.org.uk/vs/cache/ows/wms?service=wms&request=getCapabilities&version=1.0.0"},
+  {"url": "https://test.eodatahub.org.uk/vs/ows?service=WCS&version=2.0.1&request=GetCapabilities"}
+]
