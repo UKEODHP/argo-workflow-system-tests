@@ -23,14 +23,15 @@ spec:
             import json
             
             countSuccess = 0
-            countFail = 0
+            countFail = 0            
 
-            try:
+            with open('/mnt/input/keys') as file:
+              filecontents = file.read()
+              data = json.loads(filecontents)
+              
+              for item in data: # v in data.values():
+                try:
 
-              with open('/mnt/input/keys') as file:
-                filecontents = file.read()
-                data = json.loads(filecontents)
-                for item in data: # v in data.values():
                   # print("the url name read from json file is {}, now checking if url is up and running".format(item["url"]))
                   r = requests.get(item['url'])
 
@@ -43,12 +44,12 @@ spec:
 
                   print(criteria, " ", r.status_code, " for url: ", item["url"])
 
-            except requests.exceptions.RequestException as e:
-              countFail += 1
-              raise SystemExit(e)
+                except requests.exceptions.RequestException as e:
+                  countFail += 1
+                  raise SystemExit(e)
 
-            finally:
-              print("---- TEST RESULT ---- {} success, {} fail".format(countSuccess, countFail))
+                finally:
+                  print("---- TEST RESULT ---- {} success, {} fail".format(countSuccess, countFail))
 
           volumeMounts:
             - name: input-volume
