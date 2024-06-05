@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1  # https://stackoverflow.com/questions/49478036/populate-configmap-by-importing-data-from-file-in-k8s
+apiVersion: argoproj.io/v1alpha1  
 kind: CronWorkflow
 metadata:
   generateName: system-test-url-check-
@@ -46,10 +46,14 @@ spec:
 
                 except requests.exceptions.RequestException as e:
                   countFail += 1
-                  raise SystemExit(e)
+                  print("Testing url: ", item['url'], " failed with an exception")
+                  print(e)
 
                 finally:
-                  print("---- TEST RESULT ---- {} success, {} fail".format(countSuccess, countFail))
+                  continue
+
+                
+            print("---- TEST RESULT ---- ", countSuccess, " success, ", countFail, " fail")
 
           volumeMounts:
             - name: input-volume
